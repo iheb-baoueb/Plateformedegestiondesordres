@@ -152,7 +152,7 @@ export function Dashboard() {
         <div className="rounded-lg bg-white p-6 shadow">
           <h3 className="text-lg font-semibold text-gray-900">Chiffre d'affaires du mois</h3>
           <p className="mt-2 text-3xl font-semibold text-green-600">
-            {statsData.chiffreAffairesMois.toLocaleString()} €
+            {statsData.chiffreAffairesMois.toLocaleString()} DT
           </p>
           <p className="mt-1 text-sm text-gray-600">+12% par rapport au mois dernier</p>
         </div>

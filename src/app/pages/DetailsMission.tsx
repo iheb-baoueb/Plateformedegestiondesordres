@@ -242,7 +242,7 @@ export function DetailsMission() {
           {/* Prix */}
           <div className="rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white shadow">
             <p className="text-sm opacity-90">Prix de la mission</p>
-            <p className="mt-2 text-3xl font-semibold">{mission.prix} €</p>
+            <p className="mt-2 text-3xl font-semibold">{mission.prix} DT</p>
           </div>
 
           {/* Metadata */}

@@ -37,7 +37,7 @@ export function Parametres() {
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <input
                   type="email"
-                  defaultValue="responsable@transport.com"
+                  defaultValue="responsable@transport.tn"
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
                 />
               </div>
@@ -136,9 +136,9 @@ export function Parametres() {
             <div>
               <label className="block text-sm font-medium text-gray-700">Fuseau horaire</label>
               <select className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2">
+                <option value="africa/tunis">Afrique/Tunis (GMT+1)</option>
                 <option value="europe/paris">Europe/Paris (GMT+1)</option>
                 <option value="europe/london">Europe/London (GMT+0)</option>
-                <option value="america/new_york">America/New York (GMT-5)</option>
               </select>
             </div>
             <button className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">

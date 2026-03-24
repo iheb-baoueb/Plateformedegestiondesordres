@@ -26,7 +26,7 @@ export interface Vehicule {
   marque: string;
   modele: string;
   immatriculation: string;
-  type: 'berline' | 'minibus' | 'van' | 'suv';
+  type: 'berline' | 'minibus' | 'van' | 'suv' | 'bus';
   capacite: number;
   statut: 'disponible' | 'en_mission' | 'maintenance';
   annee: number;
@@ -46,7 +46,7 @@ export interface Service {
   id: string;
   nom: string;
   description: string;
-  type: 'transfert_aeroport' | 'mise_a_disposition' | 'transport_groupe' | 'evenementiel';
+  type: 'transfert' | 'transport_personnel' | 'excursion' | 'acheminement_ramassage' | 'acheminement_retour';
 }
 
 export interface Mission {
@@ -66,4 +66,9 @@ export interface Mission {
   observations?: string;
   creePar: string;
   dateCreation: string;
+  // Paramètres spécifiques selon le type de service
+  heureVol?: string; // Pour transfert
+  stations?: string[]; // Pour transport personnel
+  hotels?: string[]; // Pour excursion
+  pointsRamassage?: string[]; // Pour acheminement ramassage
 }

@@ -1,53 +1,63 @@
-// Données mock pour l'application
+// Données mock pour l'application - Données Tunisie
 import { Chauffeur, Vehicule, Client, Service, Mission, User } from '../types';
 
 export const mockUser: User = {
   id: '1',
-  email: 'responsable@transport.com',
-  nom: 'Dupont',
-  prenom: 'Jean',
+  email: 'responsable@transport.tn',
+  nom: 'Ben Salah',
+  prenom: 'Ahmed',
   role: 'responsable_transport'
 };
 
 export const mockChauffeurs: Chauffeur[] = [
   {
     id: '1',
-    nom: 'Martin',
-    prenom: 'Pierre',
-    telephone: '+33 6 12 34 56 78',
-    email: 'pierre.martin@transport.com',
+    nom: 'Trabelsi',
+    prenom: 'Mohamed',
+    telephone: '+216 98 123 456',
+    email: 'mohamed.trabelsi@transport.tn',
     permis: 'B, D',
     dateEmbauche: '2020-03-15',
     statut: 'disponible'
   },
   {
     id: '2',
-    nom: 'Bernard',
-    prenom: 'Sophie',
-    telephone: '+33 6 23 45 67 89',
-    email: 'sophie.bernard@transport.com',
+    nom: 'Jendoubi',
+    prenom: 'Fatma',
+    telephone: '+216 55 234 567',
+    email: 'fatma.jendoubi@transport.tn',
     permis: 'B',
     dateEmbauche: '2021-06-01',
     statut: 'en_mission'
   },
   {
     id: '3',
-    nom: 'Dubois',
-    prenom: 'Marc',
-    telephone: '+33 6 34 56 78 90',
-    email: 'marc.dubois@transport.com',
+    nom: 'Hamdi',
+    prenom: 'Karim',
+    telephone: '+216 22 345 678',
+    email: 'karim.hamdi@transport.tn',
     permis: 'B, C',
     dateEmbauche: '2019-11-20',
     statut: 'disponible'
   },
   {
     id: '4',
-    nom: 'Laurent',
-    prenom: 'Julie',
-    telephone: '+33 6 45 67 89 01',
-    email: 'julie.laurent@transport.com',
+    nom: 'Mahmoudi',
+    prenom: 'Sonia',
+    telephone: '+216 29 456 789',
+    email: 'sonia.mahmoudi@transport.tn',
     permis: 'B',
     dateEmbauche: '2022-02-10',
+    statut: 'disponible'
+  },
+  {
+    id: '5',
+    nom: 'Gharbi',
+    prenom: 'Youssef',
+    telephone: '+216 54 567 890',
+    email: 'youssef.gharbi@transport.tn',
+    permis: 'B, D',
+    dateEmbauche: '2018-08-15',
     statut: 'disponible'
   }
 ];
@@ -56,10 +66,10 @@ export const mockVehicules: Vehicule[] = [
   {
     id: '1',
     marque: 'Mercedes',
-    modele: 'Classe E',
-    immatriculation: 'AB-123-CD',
-    type: 'berline',
-    capacite: 4,
+    modele: 'Sprinter',
+    immatriculation: 'TUN 1234',
+    type: 'minibus',
+    capacite: 16,
     statut: 'disponible',
     annee: 2022
   },
@@ -67,7 +77,7 @@ export const mockVehicules: Vehicule[] = [
     id: '2',
     marque: 'Volkswagen',
     modele: 'Caravelle',
-    immatriculation: 'EF-456-GH',
+    immatriculation: 'TUN 5678',
     type: 'minibus',
     capacite: 8,
     statut: 'en_mission',
@@ -75,11 +85,11 @@ export const mockVehicules: Vehicule[] = [
   },
   {
     id: '3',
-    marque: 'BMW',
-    modele: 'Série 5',
-    immatriculation: 'IJ-789-KL',
-    type: 'berline',
-    capacite: 4,
+    marque: 'Hyundai',
+    modele: 'H350',
+    immatriculation: 'TUN 9012',
+    type: 'minibus',
+    capacite: 12,
     statut: 'disponible',
     annee: 2023
   },
@@ -87,86 +97,121 @@ export const mockVehicules: Vehicule[] = [
     id: '4',
     marque: 'Mercedes',
     modele: 'Vito',
-    immatriculation: 'MN-012-OP',
+    immatriculation: 'TUN 3456',
     type: 'van',
-    capacite: 6,
+    capacite: 8,
     statut: 'maintenance',
     annee: 2020
   },
   {
     id: '5',
-    marque: 'Audi',
-    modele: 'Q7',
-    immatriculation: 'QR-345-ST',
-    type: 'suv',
-    capacite: 7,
+    marque: 'Peugeot',
+    modele: 'Boxer',
+    immatriculation: 'TUN 7890',
+    type: 'minibus',
+    capacite: 9,
     statut: 'disponible',
     annee: 2022
+  },
+  {
+    id: '6',
+    marque: 'Isuzu',
+    modele: 'Turkuaz',
+    immatriculation: 'TUN 2468',
+    type: 'bus',
+    capacite: 32,
+    statut: 'disponible',
+    annee: 2021
+  },
+  {
+    id: '7',
+    marque: 'Toyota',
+    modele: 'Coaster',
+    immatriculation: 'TUN 1357',
+    type: 'bus',
+    capacite: 26,
+    statut: 'disponible',
+    annee: 2023
   }
 ];
 
 export const mockClients: Client[] = [
   {
     id: '1',
-    nom: 'Durand',
-    telephone: '+33 6 11 22 33 44',
-    email: 'durand@email.com',
-    entreprise: 'Tech Solutions',
-    adresse: '123 Avenue des Champs-Élysées, Paris',
-    nombreMissions: 15
+    nom: 'Ben Amor',
+    telephone: '+216 98 111 222',
+    email: 'benamor@email.tn',
+    entreprise: 'Leoni Tunisie',
+    adresse: 'Zone Industrielle, Manouba, Tunisie',
+    nombreMissions: 45
   },
   {
     id: '2',
-    nom: 'Lefebvre',
-    telephone: '+33 6 22 33 44 55',
-    email: 'lefebvre@email.com',
-    entreprise: 'Global Corp',
-    adresse: '45 Rue de Rivoli, Paris',
-    nombreMissions: 8
+    nom: 'Ghariani',
+    telephone: '+216 22 333 444',
+    email: 'ghariani@email.tn',
+    entreprise: 'STMicroelectronics',
+    adresse: 'Zone Industrielle, Bouslem, Tunis',
+    nombreMissions: 32
   },
   {
     id: '3',
-    nom: 'Moreau',
-    telephone: '+33 6 33 44 55 66',
-    email: 'moreau@email.com',
-    adresse: '78 Boulevard Saint-Germain, Paris',
-    nombreMissions: 23
+    nom: 'Abdelli',
+    telephone: '+216 55 555 666',
+    email: 'abdelli@email.tn',
+    adresse: 'Avenue Habib Bourguiba, Tunis',
+    nombreMissions: 18
   },
   {
     id: '4',
-    nom: 'Simon',
-    telephone: '+33 6 44 55 66 77',
-    email: 'simon@email.com',
-    entreprise: 'Innovation Hub',
-    adresse: '90 Rue du Faubourg Saint-Honoré, Paris',
-    nombreMissions: 12
+    nom: 'Mejri',
+    telephone: '+216 29 777 888',
+    email: 'mejri@email.tn',
+    entreprise: 'Polytex',
+    adresse: 'Route de Bizerte, Ariana',
+    nombreMissions: 28
+  },
+  {
+    id: '5',
+    nom: 'Saidi',
+    telephone: '+216 54 999 000',
+    email: 'saidi@email.tn',
+    entreprise: 'Tunisie Telecom',
+    adresse: 'Avenue Mohamed V, Tunis',
+    nombreMissions: 22
   }
 ];
 
 export const mockServices: Service[] = [
   {
     id: '1',
-    nom: 'Transfert Aéroport',
-    description: 'Transport depuis/vers l\'aéroport',
-    type: 'transfert_aeroport'
+    nom: 'Transfert',
+    description: 'Transport d\'un client d\'un point de départ vers une destination spécifique (ex: Aéroport → Leoni)',
+    type: 'transfert'
   },
   {
     id: '2',
-    nom: 'Mise à Disposition',
-    description: 'Chauffeur et véhicule à disposition pour la journée',
-    type: 'mise_a_disposition'
+    nom: 'Transport Personnel',
+    description: 'Transport de personnel d\'une entreprise ou d\'une organisation avec stations multiples',
+    type: 'transport_personnel'
   },
   {
     id: '3',
-    nom: 'Transport Groupe',
-    description: 'Transport pour groupes et délégations',
-    type: 'transport_groupe'
+    nom: 'Excursion',
+    description: 'Transport touristique vers un lieu touristique avec hébergement',
+    type: 'excursion'
   },
   {
     id: '4',
-    nom: 'Événementiel',
-    description: 'Transport pour événements spéciaux',
-    type: 'evenementiel'
+    nom: 'Acheminement Ramassage',
+    description: 'Collecte de plusieurs passagers depuis différents points vers une destination',
+    type: 'acheminement_ramassage'
+  },
+  {
+    id: '5',
+    nom: 'Acheminement Retour',
+    description: 'Transport retour après une activité',
+    type: 'acheminement_retour'
   }
 ];
 
@@ -180,64 +225,88 @@ export const mockMissions: Mission[] = [
     service: mockServices[0],
     dateDebut: '2026-03-25T08:00:00',
     dateFin: '2026-03-25T10:00:00',
-    lieuDepart: 'Aéroport Charles de Gaulle',
-    lieuArrivee: '123 Avenue des Champs-Élysées, Paris',
+    lieuDepart: 'Aéroport Tunis-Carthage',
+    lieuArrivee: 'Leoni Tunisie, Zone Industrielle Manouba',
     statut: 'en_cours',
-    nombrePassagers: 3,
-    prix: 150,
-    observations: 'Vol Air France AF1234',
-    creePar: 'Jean Dupont',
+    nombrePassagers: 8,
+    prix: 120,
+    observations: 'Vol Tunisair TU123',
+    heureVol: '07:30',
+    creePar: 'Ahmed Ben Salah',
     dateCreation: '2026-03-20T14:30:00'
   },
   {
     id: '2',
     reference: 'OM-2026-002',
-    client: mockClients[2],
+    client: mockClients[1],
     chauffeur: mockChauffeurs[0],
     vehicule: mockVehicules[0],
     service: mockServices[1],
-    dateDebut: '2026-03-26T09:00:00',
-    dateFin: '2026-03-26T18:00:00',
-    lieuDepart: '78 Boulevard Saint-Germain, Paris',
-    lieuArrivee: 'Divers déplacements Paris',
+    dateDebut: '2026-03-26T06:30:00',
+    dateFin: '2026-03-26T17:30:00',
+    lieuDepart: 'Station Bardo',
+    lieuArrivee: 'STMicroelectronics, Bouslem',
     statut: 'planifiee',
-    nombrePassagers: 2,
-    prix: 450,
-    creePar: 'Jean Dupont',
+    nombrePassagers: 16,
+    prix: 250,
+    stations: ['Station Bardo', 'Station Menzah', 'Station Ariana', 'Destination finale'],
+    creePar: 'Ahmed Ben Salah',
     dateCreation: '2026-03-21T10:15:00'
   },
   {
     id: '3',
     reference: 'OM-2026-003',
-    client: mockClients[1],
+    client: mockClients[2],
     chauffeur: mockChauffeurs[2],
-    vehicule: mockVehicules[2],
-    service: mockServices[0],
-    dateDebut: '2026-03-24T15:00:00',
-    dateFin: '2026-03-24T17:00:00',
-    lieuDepart: '45 Rue de Rivoli, Paris',
-    lieuArrivee: 'Aéroport Orly',
-    statut: 'terminee',
-    nombrePassagers: 1,
-    prix: 120,
-    creePar: 'Jean Dupont',
+    vehicule: mockVehicules[6],
+    service: mockServices[2],
+    dateDebut: '2026-03-27T08:00:00',
+    dateFin: '2026-03-27T18:00:00',
+    lieuDepart: 'Avenue Habib Bourguiba, Tunis',
+    lieuArrivee: 'Sidi Bou Saïd',
+    statut: 'planifiee',
+    nombrePassagers: 25,
+    prix: 450,
+    hotels: ['Hotel Dar Said', 'La Villa Bleue'],
+    observations: 'Excursion touristique - Visite guidée',
+    creePar: 'Ahmed Ben Salah',
     dateCreation: '2026-03-19T11:20:00'
   },
   {
     id: '4',
     reference: 'OM-2026-004',
     client: mockClients[3],
-    service: mockServices[2],
-    dateDebut: '2026-03-28T10:00:00',
-    dateFin: '2026-03-28T14:00:00',
-    lieuDepart: '90 Rue du Faubourg Saint-Honoré, Paris',
-    lieuArrivee: 'Centre de Conférences La Défense',
+    chauffeur: mockChauffeurs[4],
+    vehicule: mockVehicules[2],
+    service: mockServices[3],
+    dateDebut: '2026-03-28T07:00:00',
+    dateFin: '2026-03-28T08:30:00',
+    lieuDepart: 'Points multiples Ariana',
+    lieuArrivee: 'Polytex, Route de Bizerte',
     statut: 'planifiee',
-    nombrePassagers: 8,
-    prix: 300,
-    observations: 'Groupe pour séminaire',
-    creePar: 'Jean Dupont',
+    nombrePassagers: 12,
+    prix: 180,
+    pointsRamassage: ['Cité Ennasr', 'El Menzah', 'Centre Ville Ariana', 'Ariana Essoghra'],
+    creePar: 'Ahmed Ben Salah',
     dateCreation: '2026-03-22T09:45:00'
+  },
+  {
+    id: '5',
+    reference: 'OM-2026-005',
+    client: mockClients[4],
+    chauffeur: mockChauffeurs[3],
+    vehicule: mockVehicules[4],
+    service: mockServices[4],
+    dateDebut: '2026-03-24T17:00:00',
+    dateFin: '2026-03-24T18:00:00',
+    lieuDepart: 'Tunisie Telecom, Avenue Mohamed V',
+    lieuArrivee: 'Gare Routière Bab Saadoun',
+    statut: 'terminee',
+    nombrePassagers: 9,
+    prix: 80,
+    observations: 'Retour après formation',
+    creePar: 'Ahmed Ben Salah',
+    dateCreation: '2026-03-19T15:00:00'
   }
 ];
 
@@ -246,31 +315,33 @@ export const statsData = {
   missionsAujourdhui: 5,
   missionsEnCours: 2,
   chauffeursDispo: 3,
-  vehiculesDispo: 4,
-  chiffreAffairesMois: 12500,
-  missionsMois: 42
+  vehiculesDispo: 5,
+  chiffreAffairesMois: 8500,
+  missionsMois: 38
 };
 
 export const missionsParJour = [
-  { jour: 'Lun', missions: 6 },
-  { jour: 'Mar', missions: 8 },
-  { jour: 'Mer', missions: 5 },
-  { jour: 'Jeu', missions: 10 },
-  { jour: 'Ven', missions: 12 },
-  { jour: 'Sam', missions: 7 },
-  { jour: 'Dim', missions: 4 }
+  { jour: 'Lun', missions: 5 },
+  { jour: 'Mar', missions: 7 },
+  { jour: 'Mer', missions: 6 },
+  { jour: 'Jeu', missions: 8 },
+  { jour: 'Ven', missions: 9 },
+  { jour: 'Sam', missions: 4 },
+  { jour: 'Dim', missions: 3 }
 ];
 
 export const missionsParChauffeur = [
-  { nom: 'P. Martin', missions: 15 },
-  { nom: 'S. Bernard', missions: 12 },
-  { nom: 'M. Dubois', missions: 18 },
-  { nom: 'J. Laurent', missions: 9 }
+  { nom: 'M. Trabelsi', missions: 15 },
+  { nom: 'F. Jendoubi', missions: 12 },
+  { nom: 'K. Hamdi', missions: 18 },
+  { nom: 'S. Mahmoudi', missions: 9 },
+  { nom: 'Y. Gharbi', missions: 14 }
 ];
 
 export const missionsParClient = [
-  { nom: 'Tech Solutions', value: 25 },
-  { nom: 'Global Corp', value: 18 },
-  { nom: 'Moreau', value: 30 },
-  { nom: 'Innovation Hub', value: 27 }
+  { nom: 'Leoni Tunisie', value: 30 },
+  { nom: 'STMicroelectronics', value: 22 },
+  { nom: 'Polytex', value: 18 },
+  { nom: 'Tunisie Telecom', value: 15 },
+  { nom: 'Autres', value: 15 }
 ];

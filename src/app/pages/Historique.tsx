@@ -90,7 +90,7 @@ export function Historique() {
                       <span className="italic text-gray-400">Non assigné</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">{mission.prix} €</td>
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900">{mission.prix} DT</td>
                   <td className="px-6 py-4">
                     <span
                       className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
@@ -138,7 +138,7 @@ export function Historique() {
               .filter((m) => m.statut === 'terminee')
               .reduce((sum, m) => sum + m.prix, 0)
               .toLocaleString()}{' '}
-            €
+            DT
           </p>
         </div>
       </div>

@@ -19,7 +19,12 @@ export function NouvelleMission() {
     vehiculeId: '',
     chauffeurId: '',
     observations: '',
-    prix: 0
+    prix: 0,
+    // Paramètres spécifiques
+    heureVol: '',
+    stations: [''],
+    hotels: [''],
+    pointsRamassage: ['']
   });
 
   const totalSteps = 5;
@@ -216,7 +221,7 @@ export function NouvelleMission() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Prix (€)</label>
+                <label className="block text-sm font-medium text-gray-700">Prix (DT)</label>
                 <input
                   type="number"
                   value={formData.prix}
@@ -225,6 +230,111 @@ export function NouvelleMission() {
                   min="0"
                 />
               </div>
+
+              {/* Champs spécifiques selon le type de service */}
+              {formData.serviceId === '1' && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700">Heure du vol</label>
+                  <input
+                    type="time"
+                    value={formData.heureVol}
+                    onChange={(e) => setFormData({ ...formData, heureVol: e.target.value })}
+                    className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                    placeholder="Heure d'arrivée du vol"
+                  />
+                </div>
+              )}
+
+              {formData.serviceId === '2' && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700">Stations</label>
+                  {formData.stations.map((station, index) => (
+                    <div key={index} className="mt-2 flex gap-2">
+                      <input
+                        type="text"
+                        value={station}
+                        onChange={(e) => {
+                          const newStations = [...formData.stations];
+                          newStations[index] = e.target.value;
+                          setFormData({ ...formData, stations: newStations });
+                        }}
+                        className="block w-full rounded-lg border border-gray-300 px-3 py-2"
+                        placeholder={`Station ${index + 1}`}
+                      />
+                      {index === formData.stations.length - 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, stations: [...formData.stations, ''] })}
+                          className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                        >
+                          +
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {formData.serviceId === '3' && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700">Noms des hôtels</label>
+                  {formData.hotels.map((hotel, index) => (
+                    <div key={index} className="mt-2 flex gap-2">
+                      <input
+                        type="text"
+                        value={hotel}
+                        onChange={(e) => {
+                          const newHotels = [...formData.hotels];
+                          newHotels[index] = e.target.value;
+                          setFormData({ ...formData, hotels: newHotels });
+                        }}
+                        className="block w-full rounded-lg border border-gray-300 px-3 py-2"
+                        placeholder={`Hôtel ${index + 1}`}
+                      />
+                      {index === formData.hotels.length - 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, hotels: [...formData.hotels, ''] })}
+                          className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                        >
+                          +
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {formData.serviceId === '4' && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700">Points de ramassage</label>
+                  {formData.pointsRamassage.map((point, index) => (
+                    <div key={index} className="mt-2 flex gap-2">
+                      <input
+                        type="text"
+                        value={point}
+                        onChange={(e) => {
+                          const newPoints = [...formData.pointsRamassage];
+                          newPoints[index] = e.target.value;
+                          setFormData({ ...formData, pointsRamassage: newPoints });
+                        }}
+                        className="block w-full rounded-lg border border-gray-300 px-3 py-2"
+                        placeholder={`Point de ramassage ${index + 1}`}
+                      />
+                      {index === formData.pointsRamassage.length - 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, pointsRamassage: [...formData.pointsRamassage, ''] })}
+                          className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                        >
+                          +
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">Observations</label>
                 <textarea
@@ -340,7 +450,7 @@ export function NouvelleMission() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Prix:</span>
-                    <span className="font-medium text-gray-900">{formData.prix} €</span>
+                    <span className="font-medium text-gray-900">{formData.prix} DT</span>
                   </div>
                 </div>
               </div>
