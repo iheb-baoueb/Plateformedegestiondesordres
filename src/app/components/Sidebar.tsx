@@ -7,7 +7,8 @@ import {
   Building2,
   Briefcase,
   History,
-  Settings
+  Settings,
+  UserCog
 } from 'lucide-react';
 
 const navigation = [
@@ -17,6 +18,7 @@ const navigation = [
   { name: 'Véhicules', href: '/vehicules', icon: Car },
   { name: 'Clients', href: '/clients', icon: Building2 },
   { name: 'Services', href: '/services', icon: Briefcase },
+  { name: 'Utilisateurs', href: '/utilisateurs', icon: UserCog },
   { name: 'Historique', href: '/historique', icon: History },
   { name: 'Paramètres', href: '/parametres', icon: Settings }
 ];

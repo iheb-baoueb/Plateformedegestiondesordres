@@ -11,6 +11,7 @@ import { NouvelleMission } from './pages/NouvelleMission';
 import { DetailsMission } from './pages/DetailsMission';
 import { Historique } from './pages/Historique';
 import { Parametres } from './pages/Parametres';
+import { Utilisateurs } from './pages/Utilisateurs';
 import { NotFound } from './pages/NotFound';
 
 export const router = createBrowserRouter([
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: 'historique',
         Component: Historique
+      },
+      {
+        path: 'utilisateurs',
+        Component: Utilisateurs
       },
       {
         path: 'parametres',
