@@ -1,18 +1,20 @@
 import { createBrowserRouter } from 'react-router';
 import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
-import { Dashboard } from './pages/Dashboard';
-import { Chauffeurs } from './pages/Chauffeurs';
-import { Vehicules } from './pages/Vehicules';
-import { Clients } from './pages/Clients';
-import { Services } from './pages/Services';
-import { Missions } from './pages/Missions';
-import { NouvelleMission } from './pages/NouvelleMission';
-import { DetailsMission } from './pages/DetailsMission';
-import { Historique } from './pages/Historique';
 import { Parametres } from './pages/Parametres';
-import { Utilisateurs } from './pages/Utilisateurs';
 import { NotFound } from './pages/NotFound';
+import { ProtectedDashboard } from './wrappers/ProtectedDashboard';
+import { ProtectedUtilisateurs } from './wrappers/ProtectedUtilisateurs';
+import { ProtectedHistorique } from './wrappers/ProtectedHistorique';
+import { 
+  ProtectedMissions, 
+  ProtectedNouvelleMission, 
+  ProtectedDetailsMission,
+  ProtectedChauffeurs,
+  ProtectedVehicules,
+  ProtectedClients,
+  ProtectedServices
+} from './wrappers/ProtectedResponsableTransport';
 
 export const router = createBrowserRouter([
   {
@@ -25,43 +27,43 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'dashboard',
-        Component: Dashboard
+        Component: ProtectedDashboard
       },
       {
         path: 'chauffeurs',
-        Component: Chauffeurs
+        Component: ProtectedChauffeurs
       },
       {
         path: 'vehicules',
-        Component: Vehicules
+        Component: ProtectedVehicules
       },
       {
         path: 'clients',
-        Component: Clients
+        Component: ProtectedClients
       },
       {
         path: 'services',
-        Component: Services
+        Component: ProtectedServices
       },
       {
         path: 'missions',
-        Component: Missions
+        Component: ProtectedMissions
       },
       {
         path: 'missions/nouvelle',
-        Component: NouvelleMission
+        Component: ProtectedNouvelleMission
       },
       {
         path: 'missions/:id',
-        Component: DetailsMission
+        Component: ProtectedDetailsMission
       },
       {
         path: 'historique',
-        Component: Historique
+        Component: ProtectedHistorique
       },
       {
         path: 'utilisateurs',
-        Component: Utilisateurs
+        Component: ProtectedUtilisateurs
       },
       {
         path: 'parametres',

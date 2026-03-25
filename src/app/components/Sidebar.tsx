@@ -10,21 +10,40 @@ import {
   Settings,
   UserCog
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Missions', href: '/missions', icon: ClipboardList },
-  { name: 'Chauffeurs', href: '/chauffeurs', icon: Users },
-  { name: 'Véhicules', href: '/vehicules', icon: Car },
-  { name: 'Clients', href: '/clients', icon: Building2 },
-  { name: 'Services', href: '/services', icon: Briefcase },
-  { name: 'Utilisateurs', href: '/utilisateurs', icon: UserCog },
-  { name: 'Historique', href: '/historique', icon: History },
-  { name: 'Paramètres', href: '/parametres', icon: Settings }
-];
+// Menus par rôle
+const menuByRole = {
+  manager: [
+    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'Utilisateurs', href: '/utilisateurs', icon: UserCog },
+    { name: 'Historique', href: '/historique', icon: History },
+    { name: 'Paramètres', href: '/parametres', icon: Settings }
+  ],
+  responsable_transport: [
+    { name: 'Missions', href: '/missions', icon: ClipboardList },
+    { name: 'Chauffeurs', href: '/chauffeurs', icon: Users },
+    { name: 'Véhicules', href: '/vehicules', icon: Car },
+    { name: 'Clients', href: '/clients', icon: Building2 },
+    { name: 'Services', href: '/services', icon: Briefcase },
+    { name: 'Paramètres', href: '/parametres', icon: Settings }
+  ]
+};
 
 export function Sidebar() {
   const location = useLocation();
+  const [navigation, setNavigation] = useState<typeof menuByRole.manager>([]);
+
+  useEffect(() => {
+    // Récupérer le rôle de l'utilisateur
+    const userRole = localStorage.getItem('userRole') as 'manager' | 'responsable_transport';
+    if (userRole && menuByRole[userRole]) {
+      setNavigation(menuByRole[userRole]);
+    } else {
+      // Par défaut, afficher le menu du responsable transport
+      setNavigation(menuByRole.responsable_transport);
+    }
+  }, []);
 
   return (
     <div className="flex h-screen w-64 flex-col bg-[#1e3a8a] text-white">
