@@ -31,9 +31,10 @@ export function ProtectedDetailsMission() {
   );
 }
 
+// Chauffeurs, Véhicules, Clients et Services accessibles par Manager et Responsable Transport
 export function ProtectedChauffeurs() {
   return (
-    <ProtectedRoute allowedRoles={['responsable_transport']}>
+    <ProtectedRoute allowedRoles={['manager', 'responsable_transport']}>
       <Chauffeurs />
     </ProtectedRoute>
   );
@@ -41,7 +42,7 @@ export function ProtectedChauffeurs() {
 
 export function ProtectedVehicules() {
   return (
-    <ProtectedRoute allowedRoles={['responsable_transport']}>
+    <ProtectedRoute allowedRoles={['manager', 'responsable_transport']}>
       <Vehicules />
     </ProtectedRoute>
   );
@@ -49,7 +50,7 @@ export function ProtectedVehicules() {
 
 export function ProtectedClients() {
   return (
-    <ProtectedRoute allowedRoles={['responsable_transport']}>
+    <ProtectedRoute allowedRoles={['manager', 'responsable_transport']}>
       <Clients />
     </ProtectedRoute>
   );
@@ -57,7 +58,7 @@ export function ProtectedClients() {
 
 export function ProtectedServices() {
   return (
-    <ProtectedRoute allowedRoles={['responsable_transport']}>
+    <ProtectedRoute allowedRoles={['manager', 'responsable_transport']}>
       <Services />
     </ProtectedRoute>
   );

@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import { mockVehicules } from '../data/mockData';
 
 export function Vehicules() {
   const [vehicules] = useState(mockVehicules);
   const [showForm, setShowForm] = useState(false);
+  const [userRole, setUserRole] = useState<string>('');
+
+  useEffect(() => {
+    const role = localStorage.getItem('userRole') || '';
+    setUserRole(role);
+  }, []);
+
+  // Responsable Transport a accès en lecture seule
+  const isReadOnly = userRole === 'responsable_transport';
 
   const getStatutColor = (statut: string) => {
     switch (statut) {
@@ -42,6 +51,12 @@ export function Vehicules() {
         return 'Van';
       case 'suv':
         return 'SUV';
+      case 'bus':
+        return 'Bus';
+      case 'microbus':
+        return 'Microbus';
+      case '4x4':
+        return '4X4';
       default:
         return type;
     }
@@ -52,21 +67,45 @@ export function Vehicules() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Gestion des Véhicules</h1>
-          <p className="mt-1 text-gray-600">Gérez votre flotte de véhicules</p>
+          <p className="mt-1 text-gray-600">
+            {isReadOnly ? 'Consultation de la flotte de véhicules' : 'Gérez votre flotte de véhicules'}
+          </p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          Ajouter un véhicule
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            Ajouter un véhicule
+          </button>
+        )}
       </div>
 
-      {showForm && (
+      {showForm && !isReadOnly && (
         <div className="rounded-lg bg-white p-6 shadow">
           <h3 className="mb-4 text-lg font-semibold text-gray-900">Nouveau véhicule</h3>
           <form className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Type de véhicule</label>
+              <select
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              >
+                <option value="">Sélectionner un type</option>
+                <option value="bus">Bus</option>
+                <option value="minibus">Minibus</option>
+                <option value="microbus">Microbus</option>
+                <option value="4x4">4X4</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Immatriculation</label>
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="Tunis 1234"
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Marque</label>
               <input
@@ -80,32 +119,15 @@ export function Vehicules() {
               <input
                 type="text"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="Classe E"
+                placeholder="Sprinter"
               />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Immatriculation</label>
-              <input
-                type="text"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="AB-123-CD"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Type</label>
-              <select className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2">
-                <option value="berline">Berline</option>
-                <option value="minibus">Minibus</option>
-                <option value="van">Van</option>
-                <option value="suv">SUV</option>
-              </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Capacité (passagers)</label>
               <input
                 type="number"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="4"
+                placeholder="16"
               />
             </div>
             <div>
@@ -116,6 +138,41 @@ export function Vehicules() {
                 placeholder="2023"
               />
             </div>
+            
+            {/* Informations Carte Grise */}
+            <div className="md:col-span-2">
+              <h4 className="mb-3 font-medium text-gray-900">Informations Carte Grise</h4>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Numéro de carte grise</label>
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="CG-123456"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Date d'expiration carte grise</label>
+              <input
+                type="date"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Date d'expiration assurance</label>
+              <input
+                type="date"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Date visite technique</label>
+              <input
+                type="date"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            
             <div className="md:col-span-2 flex gap-3">
               <button
                 type="submit"
@@ -170,14 +227,18 @@ export function Vehicules() {
             </div>
 
             <div className="mt-4 flex gap-2 border-t pt-4">
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm hover:bg-gray-50">
-                <Edit className="h-4 w-4" />
-                Modifier
-              </button>
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-red-300 px-3 py-2 text-sm text-red-600 hover:bg-red-50">
-                <Trash2 className="h-4 w-4" />
-                Supprimer
-              </button>
+              {!isReadOnly && (
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm hover:bg-gray-50">
+                  <Edit className="h-4 w-4" />
+                  Modifier
+                </button>
+              )}
+              {!isReadOnly && (
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-red-300 px-3 py-2 text-sm text-red-600 hover:bg-red-50">
+                  <Trash2 className="h-4 w-4" />
+                  Supprimer
+                </button>
+              )}
             </div>
           </div>
         ))}

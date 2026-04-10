@@ -1,28 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Building2, User, Phone, Mail, MapPin } from 'lucide-react';
 import { mockClients } from '../data/mockData';
 
 export function Clients() {
   const [clients] = useState(mockClients);
   const [showForm, setShowForm] = useState(false);
+  const [userRole, setUserRole] = useState<string>('');
+
+  useEffect(() => {
+    const role = localStorage.getItem('userRole') || '';
+    setUserRole(role);
+  }, []);
+
+  // Responsable Transport a accès en lecture seule
+  const isReadOnly = userRole === 'responsable_transport';
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Gestion des Clients</h1>
-          <p className="mt-1 text-gray-600">Gérez votre base de clients</p>
+          <p className="mt-1 text-gray-600">
+            {isReadOnly ? 'Consultation de la base clients' : 'Gérez votre base de clients'}
+          </p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          Ajouter un client
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            Ajouter un client
+          </button>
+        )}
       </div>
 
-      {showForm && (
+      {showForm && !isReadOnly && (
         <div className="rounded-lg bg-white p-6 shadow">
           <h3 className="mb-4 text-lg font-semibold text-gray-900">Nouveau client</h3>
           <form className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -43,11 +56,19 @@ export function Clients() {
               />
             </div>
             <div>
+              <label className="block text-sm font-medium text-gray-700">Matricule Fiscale</label>
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="XXXXXXX/X/X/X/XXX"
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700">Téléphone</label>
               <input
                 type="tel"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="+33 6 00 00 00 00"
+                placeholder="+216 XX XXX XXX"
               />
             </div>
             <div>
@@ -142,12 +163,16 @@ export function Clients() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
-                      <button className="rounded p-1 hover:bg-gray-100">
-                        <Edit className="h-4 w-4 text-blue-600" />
-                      </button>
-                      <button className="rounded p-1 hover:bg-gray-100">
-                        <Trash2 className="h-4 w-4 text-red-600" />
-                      </button>
+                      {!isReadOnly && (
+                        <button className="rounded p-1 hover:bg-gray-100">
+                          <Edit className="h-4 w-4 text-blue-600" />
+                        </button>
+                      )}
+                      {!isReadOnly && (
+                        <button className="rounded p-1 hover:bg-gray-100">
+                          <Trash2 className="h-4 w-4 text-red-600" />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

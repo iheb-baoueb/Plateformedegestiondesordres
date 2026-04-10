@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Phone, Mail } from 'lucide-react';
 import { mockChauffeurs } from '../data/mockData';
 import { Chauffeur } from '../types';
@@ -7,6 +7,15 @@ export function Chauffeurs() {
   const [chauffeurs, setChauffeurs] = useState(mockChauffeurs);
   const [showForm, setShowForm] = useState(false);
   const [editingChauffeur, setEditingChauffeur] = useState<Chauffeur | null>(null);
+  const [userRole, setUserRole] = useState<string>('');
+
+  useEffect(() => {
+    const role = localStorage.getItem('userRole') || '';
+    setUserRole(role);
+  }, []);
+
+  // Responsable Transport a accès en lecture seule
+  const isReadOnly = userRole === 'responsable_transport';
 
   const getStatutColor = (statut: string) => {
     switch (statut) {
@@ -39,18 +48,22 @@ export function Chauffeurs() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Gestion des Chauffeurs</h1>
-          <p className="mt-1 text-gray-600">Gérez vos chauffeurs et leur disponibilité</p>
+          <p className="mt-1 text-gray-600">
+            {isReadOnly ? 'Consultation des chauffeurs' : 'Gérez vos chauffeurs et leur disponibilité'}
+          </p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          Ajouter un chauffeur
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            Ajouter un chauffeur
+          </button>
+        )}
       </div>
 
-      {showForm && (
+      {showForm && !isReadOnly && (
         <div className="rounded-lg bg-white p-6 shadow">
           <h3 className="mb-4 text-lg font-semibold text-gray-900">
             {editingChauffeur ? 'Modifier le chauffeur' : 'Nouveau chauffeur'}
@@ -61,7 +74,7 @@ export function Chauffeurs() {
               <input
                 type="text"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="Nom"
+                placeholder="Ben Ahmed"
               />
             </div>
             <div>
@@ -69,7 +82,15 @@ export function Chauffeurs() {
               <input
                 type="text"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="Prénom"
+                placeholder="Mohamed"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Matricule chauffeur</label>
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="MAT-2025-001"
               />
             </div>
             <div>
@@ -77,7 +98,7 @@ export function Chauffeurs() {
               <input
                 type="tel"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
-                placeholder="+33 6 00 00 00 00"
+                placeholder="+216 XX XXX XXX"
               />
             </div>
             <div>
@@ -101,6 +122,21 @@ export function Chauffeurs() {
               <input
                 type="date"
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Date expiration permis</label>
+              <input
+                type="date"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700">Adresse</label>
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="15 Avenue Habib Bourguiba, Tunis"
               />
             </div>
             <div className="md:col-span-2 flex gap-3">
@@ -178,12 +214,16 @@ export function Chauffeurs() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
-                      <button className="rounded p-1 hover:bg-gray-100">
-                        <Edit className="h-4 w-4 text-blue-600" />
-                      </button>
-                      <button className="rounded p-1 hover:bg-gray-100">
-                        <Trash2 className="h-4 w-4 text-red-600" />
-                      </button>
+                      {!isReadOnly && (
+                        <button className="rounded p-1 hover:bg-gray-100">
+                          <Edit className="h-4 w-4 text-blue-600" />
+                        </button>
+                      )}
+                      {!isReadOnly && (
+                        <button className="rounded p-1 hover:bg-gray-100">
+                          <Trash2 className="h-4 w-4 text-red-600" />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

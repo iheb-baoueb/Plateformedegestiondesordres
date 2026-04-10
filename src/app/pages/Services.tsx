@@ -1,15 +1,59 @@
-import { useState } from 'react';
-import { mockServices } from '../data/mockData';
-import { Briefcase, Plus, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Plus, X, Briefcase } from 'lucide-react';
 
 export function Services() {
+  const [services, setServices] = useState([
+    {
+      id: 1,
+      nom: 'Transfert Aéroport',
+      type: 'transfert',
+      description: 'Service de transfert depuis/vers l\'aéroport avec prise en charge à l\'heure de vol.',
+      actif: true
+    },
+    {
+      id: 2,
+      nom: 'Transport Personnel',
+      type: 'transport_personnel',
+      description: 'Service de transport personnalisé avec plusieurs stations et itinéraire flexible.',
+      actif: true
+    },
+    {
+      id: 3,
+      nom: 'Excursion',
+      type: 'excursion',
+      description: 'Organisation d\'excursions avec circuits multi-hôtels et programmes personnalisés.',
+      actif: true
+    },
+    {
+      id: 4,
+      nom: 'Acheminement Ramassage',
+      type: 'acheminement_ramassage',
+      description: 'Service d\'acheminement avec points de ramassage multiples vers une destination commune.',
+      actif: true
+    },
+    {
+      id: 5,
+      nom: 'Acheminement Retour',
+      type: 'acheminement_retour',
+      description: 'Service de retour simple depuis un point unique vers une destination finale.',
+      actif: true
+    }
+  ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [services, setServices] = useState(mockServices);
+  const [userRole, setUserRole] = useState<string>('');
   const [formData, setFormData] = useState({
     nom: '',
-    description: '',
-    type: ''
+    type: '',
+    description: ''
   });
+
+  useEffect(() => {
+    const role = localStorage.getItem('userRole') || '';
+    setUserRole(role);
+  }, []);
+
+  // Responsable Transport a accès en lecture seule
+  const isReadOnly = userRole === 'responsable_transport';
 
   const getTypeIcon = (type: string) => {
     return <Briefcase className="h-6 w-6" />;
@@ -35,13 +79,15 @@ export function Services() {
           <h1 className="text-2xl font-semibold text-gray-900">Services de Transport</h1>
           <p className="mt-1 text-gray-600">Types de services proposés aux clients</p>
         </div>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          Ajouter un service
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            Ajouter un service
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

@@ -15,6 +15,11 @@ import {
   ProtectedClients,
   ProtectedServices
 } from './wrappers/ProtectedResponsableTransport';
+import { MissionTransfert } from './pages/missions/MissionTransfert';
+import { MissionTransportPersonnel } from './pages/missions/MissionTransportPersonnel';
+import { MissionExcursion } from './pages/missions/MissionExcursion';
+import { MissionAcheminementRamassage } from './pages/missions/MissionAcheminementRamassage';
+import { MissionAcheminementRetour } from './pages/missions/MissionAcheminementRetour';
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +53,26 @@ export const router = createBrowserRouter([
       {
         path: 'missions',
         Component: ProtectedMissions
+      },
+      {
+        path: 'missions/transfert',
+        Component: MissionTransfert
+      },
+      {
+        path: 'missions/transport-personnel',
+        Component: MissionTransportPersonnel
+      },
+      {
+        path: 'missions/excursion',
+        Component: MissionExcursion
+      },
+      {
+        path: 'missions/acheminement-ramassage',
+        Component: MissionAcheminementRamassage
+      },
+      {
+        path: 'missions/acheminement-retour',
+        Component: MissionAcheminementRetour
       },
       {
         path: 'missions/nouvelle',
